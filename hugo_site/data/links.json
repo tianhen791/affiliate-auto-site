@@ -1,0 +1,14 @@
+[
+  {
+    "id": "A001",
+    "name": "Sample Product 1",
+    "desc": "First demo product",
+    "link": "https://universal-redirect.com/A001"
+  },
+  {
+    "id": "A002",
+    "name": "Sample Product 2",
+    "desc": "Second demo product",
+    "link": "https://universal-redirect.com/A002"
+  }
+]

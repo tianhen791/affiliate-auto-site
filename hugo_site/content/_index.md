@@ -1,1 +1,12 @@
-# Welcome to the Affiliate Site\nThis site was auto‑generated.
+---
+title: "首页"
+date: 2026-06-15
+---
+
+# 好物推荐
+
+欢迎来到我们的精选商品推荐站！这里为你精心挑选了各类优质商品，点击链接购买还能享受专属优惠。
+
+## 推荐商品
+
+<!-- 商品列表由自动化脚本生成 -->
