@@ -1,0 +1,5 @@
+hugo_site/themes/
+.hugo_build.lock
+public/
+.DS_Store
+Thumbs.db
