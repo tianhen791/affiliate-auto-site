@@ -1,0 +1,8 @@
+platform: "jd"                  # you can change to amazon, clickbank, pdd
+api_key: "PLACEHOLDER_AFFILIATE_API_KEY"
+affiliate_base: "https://universal-redirect.com/" # replace with real base
+product_list: "products.csv"
+hugo_dir: "./hugo_site"
+remote_repo: "https://github.com/tianhen791/affiliate-auto-site.git"
+branch: "main"
+update_interval: "0 2 * * *"
