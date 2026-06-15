@@ -7,43 +7,61 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f5f5; color: #333; }
-.header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 20px; text-align: center; }
+.header { background: linear-gradient(135deg, #e4393c 0%, #ff6b35 100%); color: white; padding: 40px 20px; text-align: center; }
 .header h1 { font-size: 2em; margin-bottom: 10px; }
 .header p { opacity: 0.9; font-size: 1.1em; }
 .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
 .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
 .product-card { background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
 .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
-.product-img { width: 100%; height: 200px; background: #e8e8e8; display: flex; align-items: center; justify-content: center; font-size: 4rem; }
-.product-info { padding: 20px; }
-.product-info h3 { font-size: 1.1em; margin-bottom: 8px; }
-.product-info p { color: #666; font-size: 0.9em; margin-bottom: 16px; line-height: 1.5; }
-.buy-btn { display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: opacity 0.2s; }
+.product-img { width: 100%; height: 220px; background: #f8f8f8; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.product-img img { width: 100%; height: 100%; object-fit: cover; }
+.product-info { padding: 16px; }
+.product-info h3 { font-size: 0.95em; margin-bottom: 6px; line-height: 1.4; height: 2.8em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.product-meta { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+.tag { font-size: 0.75em; padding: 2px 8px; border-radius: 4px; }
+.tag-coupon { background: #fff3e0; color: #e65100; }
+.tag-sales { background: #e8f5e9; color: #2e7d32; }
+.tag-commission { background: #fce4ec; color: #c62828; }
+.product-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+.price-now { font-size: 1.4em; font-weight: bold; color: #e4393c; }
+.price-now small { font-size: 0.6em; }
+.buy-btn { display: block; text-align: center; background: linear-gradient(135deg, #e4393c, #ff6b35); color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1em; transition: opacity 0.2s; }
 .buy-btn:hover { opacity: 0.85; }
 .intro { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); line-height: 1.8; }
+.section-title { font-size: 1.3em; margin-bottom: 20px; padding-left: 12px; border-left: 4px solid #e4393c; }
 .footer { text-align: center; padding: 30px; color: #999; font-size: 0.85em; }
 </style>
 </head>
 <body>
 <div class="header">
-  <h1>🛍️ 好物推荐</h1>
-  <p>精选优质商品 · 省钱买好货 · 每日更新</p>
+  <h1>🛍️ 拼多多好物推荐</h1>
+  <p>精选优惠商品 · 每日更新 · 省钱买好货</p>
 </div>
 <div class="container">
   <div class="intro">
-    <p>欢迎来到我们的精选商品推荐站！这里为你精心挑选了各类优质商品，涵盖数码、家居、美妆、服饰等品类。所有商品均来自正规电商平台，点击链接购买可享受专属优惠价格。本站通过联盟营销获取佣金，感谢你的支持！</p>
+    <p>🔥 这里为你精心拼选了拼多多平台的高性价比商品，全部带有优惠券，点击链接购买可享受拼团优惠价格。涵盖美妆护肤、数码家电、零食饮料、母婴用品、服饰穿搭等品类。感谢你的支持！</p>
   </div>
-  <h2 style="margin-bottom:20px;">🔥 热门推荐</h2>
+  <h2 class="section-title">🔥 热门推荐（{{ len (index .Site.Data "links") }}个商品）</h2>
   <div class="products-grid">
-    {{ $links := .Site.Data.links }}
+    {{ $links := index .Site.Data "links" }}
     {{ if $links }}
       {{ range $links }}
       <div class="product-card">
-        <div class="product-img">📦</div>
+        <div class="product-img">
+          {{ if .image }}<img src="{{ .image }}" alt="{{ .name }}" loading="lazy">{{ else }}📦{{ end }}
+        </div>
         <div class="product-info">
           <h3>{{ .name }}</h3>
-          <p>{{ .desc }}</p>
-          <a class="buy-btn" href="{{ .link }}" target="_blank" rel="nofollow">立即购买 →</a>
+          <div class="product-meta">
+            {{ if gt .coupon 0 }}<span class="tag tag-coupon">券¥{{ .coupon }}</span>{{ end }}
+            {{ if .sales }}<span class="tag tag-sales">销量{{ .sales }}</span>{{ end }}
+            {{ if gt .commission_rate 0 }}<span class="tag tag-commission">佣金{{ .commission_rate }}%</span>{{ end }}
+          </div>
+          <div class="product-price">
+            <span class="price-now"><small>¥</small>{{ .price }}</span>
+          </div>
+          <a class="buy-btn" href="{{ .link }}" target="_blank" rel="nofollow sponsored">立即购买 →</a>
         </div>
       </div>
       {{ end }}
@@ -53,7 +71,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
   </div>
 </div>
 <div class="footer">
-  <p>© 2026 好物推荐 · 通过联盟营销运营 · 感谢支持</p>
+  <p>© 2026 好物推荐 · 通过联盟营销运营 · 感谢你的支持</p>
+  <p style="margin-top:8px;">商品信息仅供参考，价格以拼多多平台实时为准</p>
 </div>
 </body>
 </html>
