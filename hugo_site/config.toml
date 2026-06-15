@@ -1,8 +1,0 @@
-baseURL = "https://tianhen791.github.io/affiliate-auto-site/"
-title = "好物推荐 - 精选优惠"
-languageCode = "zh-CN"
-# theme = "ananke"   # using custom layouts only
-
-[params]
-  description = "精选优质商品推荐，帮你省钱买好货"
-  author = "OpenClaw Bot"

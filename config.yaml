@@ -1,9 +1,0 @@
-platform: "pdd"                  # you can change to amazon, clickbank, jd
-pdd_client_id: "05a75eee141f4601a1fc3b41dc553a6f"
-pdd_client_secret: "580e4d8c81abf5dff05c3563389b19af47b55502"
-affiliate_base: "https://mobile.yangkeduo.com/proxy/api?" # pdd api base
-product_list: "products.csv"
-hugo_dir: "./hugo_site"
-remote_repo: "https://github.com/tianhen791/affiliate-auto-site.git"
-branch: "main"
-update_interval: "0 2 * * *"
